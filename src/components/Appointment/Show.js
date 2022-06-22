@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function Show(props) {
+export default function Show({ interview, interviewInfo, onEdit, onDelete }) {
   
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        <h2 className="text--regular">{props.interview.student}</h2>
+        <h2 className="text--regular">{interview.student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
-          <h3 className="text--regular">{props.interviewInfo.interviewer.name}</h3>
+          <h3 className="text--regular">{interviewInfo.interviewer.name}</h3>
         </section>
       </section>
       <section className="appointment__card-right">
@@ -17,13 +17,13 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick={() => props.onEdit()}
+            onClick={() => onEdit()}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick={() => props.onDelete()}
+            onClick={onDelete}
           />
         </section>
       </section>

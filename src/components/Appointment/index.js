@@ -5,27 +5,41 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import useVisualMode from "hooks/useVisualMode";
+import { getInterview } from "helpers/selectors";
 
-
-
-export default function Appointment(props) {
-
+export default function Appointment({ id, interview, interviewers, time }) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
 
   const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
+    interview ? SHOW : EMPTY
   );
+
+  const interviewInfo = getInterview(interviewers, interview);
+
+  const onDelete = () => {
+
+  }
+
+  const onEdit = () => {
+
+  }
 
   return (
     <article>
-      <Header time={props.time} />
+      <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (
-        <Show key={props.id} {...props} />
+      {mode === SHOW && interview != null && interviewInfo != null && (
+        <Show 
+          key={id} 
+          interview={interview}
+          interviewInfo={interviewInfo}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       )}
-      {mode === CREATE && <Form name={props.name} value={props.value} interviewers={props.interviewers} onCancel={back}/>}
+      {mode === CREATE && <Form interviewers={interviewers} onCancel={back}/>}
 
     </article>
   );
