@@ -16,7 +16,7 @@ const getAppointmentsForDay = function (state, day) {
   return equalIds(state.appointments, appointmentArr);
 };
 
- const getInterview = function(state, interview) {
+const getInterview = function (state, interview) {
   if (!interview) {
     return null;
   }
@@ -26,16 +26,16 @@ const getAppointmentsForDay = function (state, day) {
     student: interview.student,
     interviewer: interviewerInfo
   };
-}
+};
 
 function getInterviewersForDay(state, day) {
 
   let interviewersArr = [];
   state.days.map(dayObject => {
     if (dayObject.name === day) {
-      dayObject.interviewers.forEach(interviewerId => interviewersArr.push(interviewerId))
+      dayObject.interviewers.forEach(interviewerId => interviewersArr.push(interviewerId));
     }
-  })
+  });
   return equalIds(state.interviewers, interviewersArr);
 }
 
