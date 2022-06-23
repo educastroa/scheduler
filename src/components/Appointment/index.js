@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
 import Show from "./Show";
@@ -12,14 +12,14 @@ import useVisualMode from "hooks/useVisualMode";
 
 
 export default function Appointment(props) {
-  const { 
-    name, 
-    time, 
-    id, 
-    interviewers, 
-    bookInterview, 
-    interview, 
-    cancelInterview, 
+  const {
+    name,
+    time,
+    id,
+    interviewers,
+    bookInterview,
+    interview,
+    cancelInterview,
     value } = props;
 
   const EMPTY = "EMPTY";
@@ -53,7 +53,6 @@ export default function Appointment(props) {
   function destroy(event) {
     if (mode === CONFIRM) {
       transition(DELETING, true);
-      transition(DELETING, true);
       cancelInterview(id)
         .then(() => transition(EMPTY))
         .catch(error => transition(ERROR_DELETE, true));
@@ -61,7 +60,6 @@ export default function Appointment(props) {
       transition(CONFIRM);
     }
   }
-
 
   function edit() {
     transition(EDIT);
