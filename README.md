@@ -42,7 +42,7 @@
 
   <img src="https://s3-us-west-2.amazonaws.com/reactv2/figures/9efcde3d-fc2b-4b07-a5d8-27165716f517.gif" width="400" height="auto"/>
 
-  - Deleting interview
+- Deleting interview
 
   <img src="https://s3-us-west-2.amazonaws.com/reactv2/figures/613fda24-b343-43a5-8c5a-5e5f09da1d74.gif" width="400" height="auto" />
 
