@@ -23,10 +23,19 @@ export default function useApplicationData() {
     });
   }, []);
 
+  function availableDays(day) {
+    const weekDays = {
+      Monday: 0,
+      Tuesday: 1,
+      Wednesday: 2,
+      Thursday: 3,
+      Friday: 4
+    }
+    return weekDays[day]
+  }
 
   function bookInterview(id, interview) {
-    console.log('test', id, interview);
-
+   
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -36,10 +45,33 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    
+     const weekDay = availableDays(state.day)
+
+     let day = {
+      ...state.days[weekDay],
+      spots: state.days[weekDay]
+    }
+
+    if (!state.appointments[id].interview) {
+      day = {
+        ...state.days[weekDay],
+        spots: state.days[weekDay].spots - 1
+      } 
+    } else {
+      day = {
+        ...state.days[weekDay],
+        spots: state.days[weekDay].spots
+      } 
+    }
+
+    let days = state.days
+    days[weekDay] = day;
 
     setState({
       ...state,
-      appointments
+      appointments,
+      days
     });
 
     return axios.put(`/api/appointments/${id}`, { interview: interview })
@@ -58,9 +90,19 @@ export default function useApplicationData() {
       [id]: appointment
     }
 
+    const weekDay = availableDays(state.day)
+
+    const day = {
+      ...state.days[weekDay],
+      spots: state.days[weekDay].spots + 1
+    }
+
+    let days = state.days
+    days[weekDay] = day;
+
     return axios.delete(`api/appointments/${id}`)
     .then(res => {
-      setState({...state, appointments})
+      setState({...state, appointments, days})
       return res
     })
     //.catch(err => err)
