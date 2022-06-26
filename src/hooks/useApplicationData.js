@@ -76,7 +76,7 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview: interview })
       .then(res => setState({ ...state, appointments }))
-      //.catch(err => err)
+     
   }
 
   function cancelInterview(id) {
@@ -105,7 +105,7 @@ export default function useApplicationData() {
       setState({...state, appointments, days})
       return res
     })
-    //.catch(err => err)
+    
   }
 
   return {

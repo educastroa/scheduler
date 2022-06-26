@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
 import Show from "./Show";
@@ -13,14 +13,13 @@ import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
   const {
-    name,
     time,
     id,
     interviewers,
     bookInterview,
     interview,
-    cancelInterview,
-    value } = props;
+    cancelInterview
+    } = props;
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -37,7 +36,7 @@ export default function Appointment(props) {
     interview ? SHOW : EMPTY
   );
 
-
+//Functions to save inteviews making a call to the API calling bookInterview function 
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -49,7 +48,7 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
-
+//Fuction to delete booked interviews
   function destroy(event) {
     if (mode === CONFIRM) {
       transition(DELETING, true);
@@ -92,8 +91,8 @@ export default function Appointment(props) {
         />}
       {mode === EDIT &&
         <Form
-          name={name ? name : interview.student}
-          value={value ? value : interview.interviewer.id}
+          student={interview.student}
+          interviewer={interview.interviewer}
           interviewers={interviewers}
           onSave={save}
           onCancel={back}

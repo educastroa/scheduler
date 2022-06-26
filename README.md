@@ -68,3 +68,7 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Scheduler API Repository
+
+[Click for link to Scheduler API Repository](https://github.com/educastroa/scheduler-api?organization=educastroa&organization=educastroa)

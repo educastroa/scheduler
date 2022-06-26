@@ -1,3 +1,5 @@
+//cross reference keys from props
+
 const equalIds = function (appointments, ids) {
   const matched = ids.map(id => appointments[id]);
   return matched;
@@ -16,6 +18,7 @@ const getAppointmentsForDay = function (state, day) {
   return equalIds(state.appointments, appointmentArr);
 };
 
+
 const getInterview = function (state, interview) {
   if (!interview) {
     return null;
@@ -28,6 +31,7 @@ const getInterview = function (state, interview) {
   };
 };
 
+//Select the interviwers for the day from the State array
 function getInterviewersForDay(state, day) {
 
   let interviewersArr = [];
