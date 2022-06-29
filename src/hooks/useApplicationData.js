@@ -68,15 +68,10 @@ export default function useApplicationData() {
     let days = state.days
     days[weekDay] = day;
 
-    setState({
-      ...state,
-      appointments,
-      days
-    });
-
     return axios.put(`/api/appointments/${id}`, { interview: interview })
-      .then(res => setState({ ...state, appointments }))
-     
+      .then(res => setState({ ...state, appointments, days }))
+
+      
   }
 
   function cancelInterview(id) {
